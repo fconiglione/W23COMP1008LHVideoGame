@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.w23comp1008lhvideogame/com.example.w23comp1008lhvideogame.HelloApplication
+                                com.example.w23comp1008lhvideogame/com.example.w23comp1008lhvideogame.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
