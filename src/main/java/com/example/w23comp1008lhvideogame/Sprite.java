@@ -1,16 +1,17 @@
 package com.example.w23comp1008lhvideogame;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Sprite {
     private Image image;
-    private int posX, posyY, imageWidth, imageHeight, speed;
+    protected int posX, posY, imageWidth, imageHeight, speed;
     private boolean alive;
 
-    public Sprite(Image image, int posX, int posyY, int imageWidth, int imageHeight, int speed) {
+    public Sprite(Image image, int posX, int posY, int imageWidth, int imageHeight, int speed) {
         setImage(image);
         setPosX(posX);
-        setPosyY(posyY);
+        setPosY(posY);
         setImageWidth(imageWidth);
         setImageHeight(imageHeight);
         setSpeed(speed);
@@ -33,12 +34,12 @@ public class Sprite {
         this.posX = posX;
     }
 
-    public int getPosyY() {
-        return posyY;
+    public int getPosY() {
+        return posY;
     }
 
-    public void setPosyY(int posyY) {
-        this.posyY = posyY;
+    public void setPosY(int posY) {
+        this.posY = posY;
     }
 
     public int getImageWidth() {
@@ -72,4 +73,10 @@ public class Sprite {
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
+
+    public void draw(GraphicsContext gc)
+    {
+        gc.drawImage(image,posX,posY,imageWidth,imageHeight);
+    }
+
 }
