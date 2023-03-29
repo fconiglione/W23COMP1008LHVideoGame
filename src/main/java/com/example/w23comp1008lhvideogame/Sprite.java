@@ -4,6 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Sprite {
+    protected static final int GAMEHEIGHT = 800;
+    protected static final int GAMEWIDTH = 1000;
     private Image image;
     protected int posX, posY, imageWidth, imageHeight, speed;
     private boolean alive;

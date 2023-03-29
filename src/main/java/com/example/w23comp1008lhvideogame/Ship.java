@@ -25,22 +25,33 @@ public class Ship extends Sprite {
      */
     public void moveRight()
     {
+        int furthestRight = GAMEWIDTH-imageWidth;
         posX = posX + speed;
+        if (posX>furthestRight)
+            posX = furthestRight;
     }
 
     public void moveDown()
     {
+        int furthestDown = GAMEHEIGHT - imageHeight;
         posY += speed;
+
+        if (posY > furthestDown)
+            posY=furthestDown;
     }
 
     // create methods for moveLeft and moveUp
     public void moveLeft()
     {
         posX -= speed;
+        if (posX<0)
+            posX = 0;
     }
 
     public void moveUp()
     {
         posY -= speed;
+        if (posY<0)
+            posY = 0;
     }
 }
