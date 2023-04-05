@@ -53,7 +53,7 @@ public class GameBoardController {
         // SecureRandom is a class that creates random numbers
         SecureRandom rng = new SecureRandom();
         ArrayList<Alien> aliens = new ArrayList<>();
-        for (int i=1; i<=12; i++)
+        for (int i=1; i<=20; i++)
             aliens.add(new Alien(rng.nextInt(500,1000), rng.nextInt(0,740)));
 
         // ArrayList to track explosions
@@ -81,7 +81,14 @@ public class GameBoardController {
 
                 // remove any deceased aliens
                 aliens.removeIf(alien -> !alien.isAlive());
-                System.out.println("Number of Aliens: " + aliens.size());
+                // remove the explosions
+                explosions.removeIf(explosion -> !explosion.isAlive());
+
+                // check if we saved the universe
+                if(aliens.size() == 0 && explosions.size()==0 && ship.getActiveMissiles().size()==0)
+                {
+                    stop();
+                }
 
                 //draw the Aliens
                 for (Alien alien : aliens)
