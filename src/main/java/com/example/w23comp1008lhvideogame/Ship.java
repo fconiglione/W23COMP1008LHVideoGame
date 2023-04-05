@@ -86,4 +86,8 @@ public class Ship extends Sprite {
         for (Missile missile: activeMissiles)
             missile.draw(gc);
     }
+
+    public ArrayList<Missile> getActiveMissiles() {
+        return activeMissiles;
+    }
 }
