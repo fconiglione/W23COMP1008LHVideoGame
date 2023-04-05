@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 
+import java.lang.reflect.Array;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -54,6 +55,9 @@ public class GameBoardController {
         ArrayList<Alien> aliens = new ArrayList<>();
         for (int i=1; i<=12; i++)
             aliens.add(new Alien(rng.nextInt(500,1000), rng.nextInt(0,740)));
+
+        // ArrayList to track explosions
+        ArrayList<Explosion> explosions = new ArrayList<>();
         AnimationTimer timer = new AnimationTimer() {
             /**
              * The "handle()" method is abstract in the AnimationTimer class, so we
@@ -89,6 +93,7 @@ public class GameBoardController {
                     {
                         ship.setAlive(false);
                         alien.setAlive(false);
+                        explosions.add(new Explosion(alien.getPosX(),alien.getPosY()));
                         stop();
                     }
 
@@ -96,11 +101,15 @@ public class GameBoardController {
                     {
                         if (missile.collidesWith(alien))
                         {
+                            explosions.add(new Explosion(alien.getPosX(),alien.getPosY()));
                             missile.setAlive(false);
                             alien.setAlive(false);
                         }
                     }
                 }
+
+                for (Explosion explosion: explosions)
+                    explosion.draw(gc);
             }
         };
 
