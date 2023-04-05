@@ -9,6 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.lang.reflect.Array;
 import java.security.SecureRandom;
@@ -87,6 +90,7 @@ public class GameBoardController {
                 // check if we saved the universe
                 if(aliens.size() == 0 && explosions.size()==0 && ship.getActiveMissiles().size()==0)
                 {
+                    finalMessage(gc,"You saved the universe");
                     stop();
                 }
 
@@ -101,6 +105,7 @@ public class GameBoardController {
                         ship.setAlive(false);
                         alien.setAlive(false);
                         explosions.add(new Explosion(alien.getPosX(),alien.getPosY()));
+                        finalMessage(gc,"Game Over - Aliens win :(");
                         stop();
                     }
 
@@ -136,5 +141,13 @@ public class GameBoardController {
             ship.moveUp();
         if(activeKeys.contains(KeyCode.SPACE))
             ship.shootMissile();
+    }
+
+    private void finalMessage(GraphicsContext gc, String message)
+    {
+        Font font = Font.font("Arial", FontWeight.NORMAL,40);
+        gc.setFont(font);
+        gc.setFill(Color.WHITE);
+        gc.fillText(message,250,350);
     }
 }
